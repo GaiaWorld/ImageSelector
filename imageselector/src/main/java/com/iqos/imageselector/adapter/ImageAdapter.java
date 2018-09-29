@@ -162,7 +162,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
     }
 
     public Image getFirstVisibleImage(int firstVisibleItem) {
-        if (mImages != null) {
+        if (mImages != null && 0 != mImages.size()) {
             if (useCamera) {
                 return mImages.get(firstVisibleItem == 0 ? 0 : firstVisibleItem - 1);
             } else {

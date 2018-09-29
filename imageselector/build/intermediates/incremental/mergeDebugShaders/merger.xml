@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="B:\AndroidWorkSpace\demo\ImageSelector\imageselector\src\main\shaders"/></dataSet><dataSet config="debug"><source path="B:\AndroidWorkSpace\demo\ImageSelector\imageselector\src\debug\shaders"/></dataSet></merger>
+<merger version="3"><dataSet config="main"><source path="B:\AndroidWorkSpace\Code\ImageSelector\ImageSelector\imageselector\src\main\shaders"/></dataSet><dataSet config="debug"><source path="B:\AndroidWorkSpace\Code\ImageSelector\ImageSelector\imageselector\src\debug\shaders"/></dataSet></merger>
