@@ -457,8 +457,28 @@ public class ImageSelectorActivity extends AppCompatActivity {
                 ArrayList<String> images = new ArrayList<>();
                 images.add(mPhotoPath);
                 setResult(images);
+                this.saveToMediaSQL();
                 finish();
             }
+        }
+    }
+
+    /**
+     * You have been saved the image into the SD Card,
+     * but Android OS couldn't know which image you saved,
+     * so you need to send the broadcast to notify Android OS,
+     * and Android OS will auto add this path into sql,
+     * then we could find the image in the gallery.
+     */
+    private void saveToMediaSQL() {
+        try {
+            Intent intent = new Intent();
+            Uri uri = Uri.fromFile(new File(mPhotoPath));
+            intent.setAction(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+            intent.setData(uri);
+            sendBroadcast(intent);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -638,8 +658,7 @@ public class ImageSelectorActivity extends AppCompatActivity {
      * 启动应用的设置
      */
     private void startAppSettings() {
-        Intent intent = new Intent(
-                Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+        Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
         intent.setData(Uri.parse("package:" + getPackageName()));
         startActivity(intent);
     }

@@ -5,4 +5,6 @@
     <string name="image">图片</string>
     <string name="preview">预览</string>
     <string name="select">选择</string>
+    <string formatted="false" name="select_count">"确定(%d)"</string>
+    <string formatted="false" name="select_order">"确定(%d/%d)"</string>
 </resources>

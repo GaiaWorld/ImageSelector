@@ -806,7 +806,9 @@ int string image 0x7f150020
 int string preview 0x7f150021
 int string search_menu_title 0x7f150022
 int string select 0x7f150023
-int string status_bar_notification_info_overflow 0x7f150024
+int string select_count 0x7f150024
+int string select_order 0x7f150025
+int string status_bar_notification_info_overflow 0x7f150026
 int style AlertDialog_AppCompat 0x7f160001
 int style AlertDialog_AppCompat_Light 0x7f160002
 int style Animation_AppCompat_Dialog 0x7f160003

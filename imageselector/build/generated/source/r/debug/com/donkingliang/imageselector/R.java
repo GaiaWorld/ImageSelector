@@ -834,7 +834,9 @@ public final class R {
         public static int preview = 0x7f150021;
         public static int search_menu_title = 0x7f150022;
         public static int select = 0x7f150023;
-        public static int status_bar_notification_info_overflow = 0x7f150024;
+        public static int select_count = 0x7f150024;
+        public static int select_order = 0x7f150025;
+        public static int status_bar_notification_info_overflow = 0x7f150026;
     }
     public static final class style {
         public static int AlertDialog_AppCompat = 0x7f160001;

@@ -4,4 +4,6 @@
     <string name="confirm">确定</string>
     <string name="preview">预览</string>
     <string name="select">选择</string>
+    <string name="select_order" formatted="false">"确定(%d/%d)"</string>
+    <string name="select_count" formatted="false">"确定(%d)"</string>
 </resources>
