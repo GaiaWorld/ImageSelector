@@ -21,8 +21,8 @@ public class ImageSelectorUtils {
      * @param activity    Activity
      * @param requestCode requestCode
      */
-    public static void openPhoto(Activity activity, int requestCode) {
-        openPhoto(activity, requestCode, false, 0);
+    public static void openPhoto(Activity activity, int requestCode, boolean showGif) {
+        openPhoto(activity, requestCode, false, 0, showGif);
     }
 
     /**
@@ -33,8 +33,8 @@ public class ImageSelectorUtils {
      * @param selected    接收从外面传进来的已选择的图片列表。当用户原来已经有选择过图片，现在重新打开
      *                    选择器，允许用户把先前选过的图片传进来，并把这些图片默认为选中状态。
      */
-    public static void openPhoto(Activity activity, int requestCode, ArrayList<String> selected) {
-        openPhoto(activity, requestCode, false, 0, selected);
+    public static void openPhoto(Activity activity, int requestCode, ArrayList<String> selected, boolean showGif) {
+        openPhoto(activity, requestCode, false, 0, selected, showGif);
     }
 
     /**
@@ -46,8 +46,8 @@ public class ImageSelectorUtils {
      * @param maxSelectCount 图片的最大选择数量，小于等于0时，不限数量，isSingle为false时才有用。
      */
     public static void openPhoto(Activity activity, int requestCode,
-                                 boolean isSingle, int maxSelectCount) {
-        openPhoto(activity, requestCode, isSingle, maxSelectCount, null);
+                                 boolean isSingle, int maxSelectCount, boolean showGif) {
+        openPhoto(activity, requestCode, isSingle, maxSelectCount, null, showGif);
     }
 
     /**
@@ -60,9 +60,13 @@ public class ImageSelectorUtils {
      * @param selected       接收从外面传进来的已选择的图片列表。当用户原来已经有选择过图片，现在重新打开
      *                       选择器，允许用户把先前选过的图片传进来，并把这些图片默认为选中状态。
      */
-    public static void openPhoto(Activity activity, int requestCode,
-                                 boolean isSingle, int maxSelectCount, ArrayList<String> selected) {
-        ImageSelectorActivity.openActivity(activity, requestCode, isSingle, true, maxSelectCount, selected);
+    public static void openPhoto(Activity activity,
+                                 int requestCode,
+                                 boolean isSingle,
+                                 int maxSelectCount,
+                                 ArrayList<String> selected,
+                                 boolean showGif) {
+        ImageSelectorActivity.openActivity(activity, requestCode, isSingle, true, maxSelectCount, selected, showGif);
     }
 
     /**

@@ -20,7 +20,7 @@ public class ImageModel {
     /**
      * 从SDCard加载图片
      */
-    public static void loadImageForSDCard(final Context context, final DataCallback callback) {
+    public static void loadImageForSDCard(final Context context, final DataCallback callback, final boolean showGif) {
         //由于扫描图片是耗时的操作，所以要在子线程处理。
         new Thread(new Runnable() {
             @Override
@@ -59,6 +59,7 @@ public class ImageModel {
                                 mCursor.getColumnIndex(MediaStore.Images.Media.MIME_TYPE));
 
                         if (!"downloading".equals(getExtensionName(path))) { //过滤未下载完成的文件
+                            if (!showGif && path.endsWith(".gif")) continue;
                             images.add(new Image(path, time, name, mimeType));
                         }
                     }

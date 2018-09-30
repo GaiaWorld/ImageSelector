@@ -62,7 +62,6 @@ public class ImageSelectorActivity extends AppCompatActivity {
     private RecyclerView rvImage;
     private RecyclerView rvFolder;
     private View masking;
-
     private ImageAdapter mAdapter;
     private GridLayoutManager mLayoutManager;
 
@@ -82,7 +81,7 @@ public class ImageSelectorActivity extends AppCompatActivity {
 
     private boolean useCamera = true;
     private String mPhotoPath;
-
+    private static boolean showGif;
     private Handler mHideHandler = new Handler();
     private Runnable mHide = new Runnable() {
         @Override
@@ -105,12 +104,15 @@ public class ImageSelectorActivity extends AppCompatActivity {
      * @param maxSelectCount 图片的最大选择数量，小于等于0时，不限数量，isSingle为false时才有用。
      * @param selected       接收从外面传进来的已选择的图片列表。当用户原来已经有选择过图片，现在重新打开
      *                       选择器，允许用户把先前选过的图片传进来，并把这些图片默认为选中状态。
+     * @param showGIF        是否要显示本地所有的图片中显示 GIF 图片
      */
-    public static void openActivity(Activity activity, int requestCode, boolean isSingle, boolean useCamera, int maxSelectCount, ArrayList<String> selected) {
+    public static void openActivity(Activity activity, int requestCode, boolean isSingle, boolean useCamera, int maxSelectCount, ArrayList<String> selected, boolean showGIF) {
+        ImageSelectorActivity.showGif = showGIF;
         Intent intent = new Intent(activity, ImageSelectorActivity.class);
         intent.putExtra(ImageSelector.MAX_SELECT_COUNT, maxSelectCount);
         intent.putExtra(ImageSelector.IS_SINGLE, isSingle);
         intent.putExtra(ImageSelector.USE_CAMERA, useCamera);
+        intent.putExtra(ImageSelector.SHOW_GIF, showGIF);
         intent.putStringArrayListExtra(ImageSelector.SELECTED, selected);
         activity.startActivityForResult(intent, requestCode);
     }
@@ -513,7 +515,7 @@ public class ImageSelectorActivity extends AppCompatActivity {
                 Manifest.permission.WRITE_EXTERNAL_STORAGE);
         if (hasWriteExternalPermission == PackageManager.PERMISSION_GRANTED) {
             //有权限，加载图片。
-            loadImageForSDCard();
+            loadImageForSDCard(showGif);
         } else {
             //没有权限，申请权限。
             ActivityCompat.requestPermissions(ImageSelectorActivity.this,
@@ -546,7 +548,7 @@ public class ImageSelectorActivity extends AppCompatActivity {
             if (grantResults.length > 0
                     && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 //允许权限，加载图片。
-                loadImageForSDCard();
+                loadImageForSDCard(showGif);
             } else {
                 //拒绝权限，弹出提示框。
                 showExceptionDialog(true);
@@ -592,7 +594,7 @@ public class ImageSelectorActivity extends AppCompatActivity {
     /**
      * 从SDCard加载图片。
      */
-    private void loadImageForSDCard() {
+    private void loadImageForSDCard(boolean showGif) {
         ImageModel.loadImageForSDCard(this, new ImageModel.DataCallback() {
             @Override
             public void onSuccess(ArrayList<Folder> folders) {
@@ -612,7 +614,7 @@ public class ImageSelectorActivity extends AppCompatActivity {
                     }
                 });
             }
-        });
+        },showGif);
     }
 
     /**

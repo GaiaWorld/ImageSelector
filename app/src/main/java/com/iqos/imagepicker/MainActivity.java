@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         ImageSelector.builder()
                 .useCamera(true)//设置是否使用拍照
                 .setSingle(false)//设置是否单选
+                .showGif(true)//设置是否要显示 GIF
                 .setMaxSelectCount(9)//图片的最大选择数量，小于等于0时，不限数量。
                 .start(this, 1);//打开相册
     }

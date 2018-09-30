@@ -40,7 +40,8 @@ public class ClipImageActivity extends Activity {
         setStatusBarColor();
         ImageSelectorActivity.openActivity(this, mRequestCode, true,
                 intent.getBooleanExtra(ImageSelector.USE_CAMERA, true), 0,
-                intent.getStringArrayListExtra(ImageSelector.SELECTED));
+                intent.getStringArrayListExtra(ImageSelector.SELECTED),
+                intent.getBooleanExtra(ImageSelector.SHOW_GIF, false));
         initView();
     }
 

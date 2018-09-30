@@ -23,6 +23,8 @@ public class ImageSelector {
     public static final String IS_SINGLE = "is_single";
     //是否使用拍照功能
     public static final String USE_CAMERA = "is_camera";
+    //是否要显示GIF图片
+    public static final String SHOW_GIF = "show_gif";
     //原来已选择的图片
     public static final String SELECTED = "selected";
     //初始位置
@@ -38,9 +40,10 @@ public class ImageSelector {
 
     public static class ImageSelectorBuilder {
 
-        private boolean isCrop = false;
+        private boolean isCrop;
         private boolean useCamera = true;
-        private boolean isSingle = false;
+        private boolean isSingle;
+        private boolean showGif = true;
         private int maxSelectCount;
         private ArrayList<String> selected;
 
@@ -63,6 +66,11 @@ public class ImageSelector {
          */
         public ImageSelectorBuilder setSingle(boolean isSingle) {
             this.isSingle = isSingle;
+            return this;
+        }
+
+        public ImageSelectorBuilder showGif(boolean showGif) {
+            this.showGif = showGif;
             return this;
         }
 
@@ -110,7 +118,7 @@ public class ImageSelector {
             if (isCrop) {
                 ClipImageActivity.openActivity(activity, requestCode, useCamera, selected);
             } else {
-                ImageSelectorActivity.openActivity(activity, requestCode, isSingle, useCamera, maxSelectCount, selected);
+                ImageSelectorActivity.openActivity(activity, requestCode, isSingle, useCamera, maxSelectCount, selected, showGif);
             }
         }
     }
